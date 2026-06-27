@@ -112,13 +112,13 @@ function ws_update_status() {
 }
 
 function ws_init() {
-  status("connecting...");
+  status("连接中...");
 
   ws = new WebSocket("ws://" + location.host + "/ws");
 
   ws.onopen = function(event) {
-    log_ws("connected");
-    status("connected");
+    log_ws("已连接");
+    status("已连接");
 
     ws_send("close", log_ws, true);
     ws_send("version", set_version);
@@ -127,8 +127,8 @@ function ws_init() {
   };
 
   ws.onclose = function(event) {
-    log_ws("disconnected");
-    status("disconnected");
+    log_ws("已断开");
+    status("已断开");
   };
 
   ws.onmessage = function(event) {
@@ -144,8 +144,8 @@ function ws_init() {
   };
 
   ws.onerror = function(event) {
-    log_ws("error");
-    status("error");
+    log_ws("错误");
+    status("错误");
 
     console.error(event);
   };

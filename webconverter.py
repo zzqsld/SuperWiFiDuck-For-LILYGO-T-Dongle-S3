@@ -8,7 +8,7 @@ import binascii
 import gzip
 
 def get_file_content(path):
-    file = open(path,"r")
+    file = open(path,"r",encoding="utf-8")
     content = file.read().encode("utf-8")
     file.close();
 

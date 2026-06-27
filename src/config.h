@@ -34,7 +34,7 @@
   STA is for connecting to an existing access point
   AP is for creating a new access point
 */
-#define MODE "STA"
+#define MODE "AP"
 
 #define WIFI_SSID "wifiduck" // wifi name for AP or STA
 #define WIFI_PASSWORD "wifiduck" // wifi password for AP or STA

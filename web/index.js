@@ -90,7 +90,7 @@ function update_file_list() {
     var percent = Math.floor(byte / 100);
     var freepercent = Math.floor(free / percent);
 
-    E("freeMemory").innerHTML = used + " byte used (" + freepercent + "% free)";
+    E("freeMemory").innerHTML = used + " 字节已使用（" + freepercent + "% 空闲）";
 
     file_list = "";
 
@@ -101,9 +101,9 @@ function update_file_list() {
       var tableHTML = "<thead>\n";
 
       tableHTML += "<tr>\n";
-      tableHTML += "<th>File</th>\n";
-      tableHTML += "<th>Byte</th>\n";
-      tableHTML += "<th>Actions</th>\n";
+      tableHTML += "<th>文件</th>\n";
+      tableHTML += "<th>大小</th>\n";
+      tableHTML += "<th>操作</th>\n";
       tableHTML += "</tr>\n";
       tableHTML += "</thead>\n";
       tableHTML += "<tbody>\n";
@@ -121,8 +121,8 @@ function update_file_list() {
           tableHTML += "<td>" + fileName + "</td>\n";
           tableHTML += "<td>" + fileSize + "</td>\n";
           tableHTML += "<td>\n";
-          tableHTML += "<button class=\"primary\" onclick=\"read('" + fileName + "')\">edit</button>\n";
-          tableHTML += "<button class=\"warn\" onclick=\"run('" + fileName + "')\">run</button>\n";
+          tableHTML += "<button class=\"primary\" onclick=\"read('" + fileName + "')\">编辑</button>\n";
+          tableHTML += "<button class=\"warn\" onclick=\"run('" + fileName + "')\">运行</button>\n";
           tableHTML += "</tr>\n";
         }
       }
@@ -135,9 +135,9 @@ function update_file_list() {
 
 // ! Format SPIFFS
 function format() {
-  if (confirm("Format SPIFFS? This will delete all scripts!")) {
+  if (confirm("格式化 SPIFFS？这将删除所有脚本！")) {
     ws_send("format", log_ws);
-    alert("Formatting will take a minute.\nYou have to reconnect afterwards.");
+    alert("格式化需要一些时间。\n完成后请重新连接。");
   }
 }
 
@@ -163,7 +163,7 @@ function read_stream() {
     if (content != "> END") {
       E("editor").value += content;
       read_stream();
-      status("reading...");
+      status("读取中...");
     } else {
       ws_send("close", log_ws);
       ws_update_status();
@@ -254,7 +254,7 @@ function write(fileName, content) {
 function save() {
   write(get_editor_filename(), get_editor_content());
   unsaved_changed = false;
-  E("editorinfo").innerHTML = "saved";
+  E("editorinfo").innerHTML = "已保存";
   update_file_list();
 }
 
@@ -277,7 +277,7 @@ window.addEventListener("load", function() {
   E("editorSave").onclick = save;
 
   E("editorDelete").onclick = function() {
-    if (confirm("Delete " + get_editor_filename() + "?")) {
+    if (confirm("删除 " + get_editor_filename() + "？")) {
       remove(get_editor_filename());
     }
   };
@@ -300,11 +300,11 @@ window.addEventListener("load", function() {
 
   E("editor").onkeyup = function() {
     unsaved_changed = true;
-    E("editorinfo").innerHTML = "unsaved changes";
+    E("editorinfo").innerHTML = "有未保存的更改";
   }
 
   E("editorAutorun").onclick = function() {
-    if (confirm("Run this script automatically on startup?\nYou can disable it in the settings."))
+    if (confirm("开机自动运行此脚本？\n你可以在设置中关闭。"))
       autorun(get_editor_filename());
   }
 

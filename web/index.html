@@ -10,7 +10,7 @@
         <meta name="theme-color" content="#36393E">
 
         <meta name="description" content="WiFi Duck">
-        <title>WiFi Duck</title>
+        <title>WiFi Duck 控制台</title>
 
         <link rel="stylesheet" type="text/css" href="style.css">
         <script src="script.js"></script>
@@ -19,69 +19,69 @@
     <body>
         <nav>
             <ul class="menu">
-                <li><a href="index.html">WiFi Duck</a></li>
-                <li><a href="settings.html">Settings</a></li>
-                <li><a href="terminal.html">Terminal</a></li>
-                <li><a href="credits.html">About</a></li>
+                <li><a href="index.html">主页</a></li>
+                <li><a href="settings.html">设置</a></li>
+                <li><a href="terminal.html">终端</a></li>
+                <li><a href="credits.html">关于</a></li>
             </ul>
         </nav>
         <div id="status"></div>
         <main>
             <section>
-                <h1>Status</h1>
+                <h1>状态</h1>
                 <div class="row">
-                    <p><b>Storage: </b><span id="freeMemory">-</span></p>
-                    <button class="danger" id="format">format</button>
-                    <button class="warn" id="stop">stop</button>
-                    <button class="white" id="reconnect">reconnect</button>
+                    <p><b>存储：</b><span id="freeMemory">-</span></p>
+                    <button class="danger" id="format">格式化</button>
+                    <button class="warn" id="stop">停止</button>
+                    <button class="white" id="reconnect">重连</button>
                 </div>
             </section>
             <section>
-                <h1>Scripts <a class="reload" id="scriptsReload">&#x21bb;</a></h1>
+                <h1>脚本 <a class="reload" id="scriptsReload">&#x21bb;</a></h1>
                 <table class="table" id="scriptTable"></table>
                 <div class="row">
-                    <input placeholder="Filename /<name>" type="text" class="smooth" value="/" id="newFile"/>
-                    <button class="success" onclick="create(get_new_filename())">create</button>
+                    <input placeholder="文件名 /<名称>" type="text" class="smooth" value="/" id="newFile"/>
+                    <button class="success" onclick="create(get_new_filename())">新建</button>
                 </div>
             </section>
             <section>
-                <h1>Editor <a class="reload" id="editorReload">&#x21bb;</a></h1>
+                <h1>编辑器 <a class="reload" id="editorReload">&#x21bb;</a></h1>
                 <div class="row">
-                    <input placeholder="Filename /<name>" type="text" class="smooth" value="/" id="editorFile">
-                    <button class="danger" id="editorDelete">delete</button>
-                    <button class="primary" id="editorDownload">download</button>
-                    <button class="primary" id="editorAutorun">Enable autorun</button>
+                    <input placeholder="文件名 /<名称>" type="text" class="smooth" value="/" id="editorFile">
+                    <button class="danger" id="editorDelete">删除</button>
+                    <button class="primary" id="editorDownload">下载</button>
+                    <button class="primary" id="editorAutorun">开机自动运行</button>
                 </div>
                 <div class="row">
                     <textarea class="smooth" id="editor"></textarea>
                 </div>
                 <div class="row">
                     <div class="debugger">
-                        Output: <span id="editorinfo">saved</span>
+                        输出：<span id="editorinfo">已保存</span>
                     </div>
                 </div>
                 <div class="row">
                     <div id="editor-primary-buttons">
-                        <button class="success" id="editorSave">save</button>
-                        <button class="warn" id="editorRun">run</button>
-                        <button class="danger" id="editorStop">stop</button>
+                        <button class="success" id="editorSave">保存</button>
+                        <button class="warn" id="editorRun">运行</button>
+                        <button class="danger" id="editorStop">停止</button>
                     </div>
                 </div>
             </section>
             <section>
                 <!--<h1>Documentation</h1>-->
-                <h2>Scripting</h2>
-                <h3>Basics</h3>
+                <h2>脚本编写</h2>
+                <h3>基础</h3>
                 <p>
-                    Keys are separated by a single space.<br>
-                    Everything written in a single line gets pressed and released at the same time.<br>
-                    To write text, use the STRING function.
+                    按键之间用单个空格分隔。<br>
+                    同一行中的内容会同时按下并释放。<br>
+                    要输入文本，请使用 STRING 函数。
                 </p>
                 <table>
                     <thead>
                         <tr>
-                            <th>Example</th>
-                            <th>Explanation</th>
+                            <th>示例</th>
+                            <th>说明</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -89,76 +89,76 @@
                             <td>WINDOWS
                                 <br> r
                             </td>
-                            <td>Type the Windows key and then the r key</td>
+                            <td>先按下 Windows 键，再按 r 键</td>
                         </tr>
                         <tr>
                             <td>WINDOWS r</td>
-                            <td>Press the Windows key and the r key simultaneously</td>
+                            <td>同时按下 Windows 键和 r 键</td>
                         </tr>
                         <tr>
                             <td>STRING WINDOWS r</td>
-                            <td>Write WINDOWS r</td>
+                            <td>输入文本 WINDOWS r</td>
                         </tr>
                     </tbody>
                 </table>
-                <h3>Functions</h3>
+                <h3>函数</h3>
                 <table id="ducky-functions-table">
                     <thead>
                         <tr>
-                            <th>Command</th>
-                            <th>Example</th>
-                            <th>Description</th>
+                            <th>命令</th>
+                            <th>示例</th>
+                            <th>说明</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><code>REM</code></td>
                             <td><code>REM Hello World!</code></td>
-                            <td>Comment</td>
+                            <td>注释</td>
                         </tr>
                         <tr>
-                            <td><code>DEFAULTDELAY</code> or <code>DEFAULT_DELAY</code></td>
+                            <td><code>DEFAULTDELAY</code> 或 <code>DEFAULT_DELAY</code></td>
                             <td><code>DEFAULTDELAY 200</code></td>
-                            <td>Time in ms between every command</td>
+                            <td>每条命令之间的默认间隔（毫秒）</td>
                         </tr>
                         <tr>
                             <td><code>DELAY</code></td>
                             <td><code>DELAY 1000</code></td>
-                            <td>Delay in ms</td>
+                            <td>延时（毫秒）</td>
                         </tr>
                         <tr>
                             <td><code>STRING</code></td>
                             <td><code>STRING Hello World!</code></td>
-                            <td>Types the following string</td>
+                            <td>输入后面的字符串</td>
                         </tr>
                         <tr>
-                            <td><code>REPEAT</code> or <code>REPLAY</code></td>
+                            <td><code>REPEAT</code> 或 <code>REPLAY</code></td>
                             <td><code>REPEAT 3</code></td>
-                            <td>Repeats the last command n times</td>
+                            <td>重复上一条命令 n 次</td>
                         </tr>
                         <tr>
                             <td><code>LOCALE</code></td>
                             <td><code>LOCALE DE</code></td>
-                            <td>Sets the keyboard layout. Available: <code>DE</code>, <code>GB</code>, <code>US</code>, <code>ES</code>, <code>FR</code>, <code>DK</code>, <code>RU</code>, <code>BE</code>, <code>PT</code>, <code>IT</code>, <code>SK</code>, <code>CZ</code>, <code>SI</code>, <code>BG</code>, <code>CA-FR</code>, <code>CH-DE</code>, <code>CH-FR</code>, <code>HU</code>
+                            <td>设置键盘布局。可用值：<code>DE</code>, <code>GB</code>, <code>US</code>, <code>ES</code>, <code>FR</code>, <code>DK</code>, <code>RU</code>, <code>BE</code>, <code>PT</code>, <code>IT</code>, <code>SK</code>, <code>CZ</code>, <code>SI</code>, <code>BG</code>, <code>CA-FR</code>, <code>CH-DE</code>, <code>CH-FR</code>, <code>HU</code>
                             </td>
                         </tr>
                         <tr>
                             <td><code>KEYCODE</code></td>
                             <td><code>KEYCODE 0x02 0x04</code></td>
-                            <td>Types a specific key code (modifier, key1[, ..., key6]) in decimal or hexadecimal</td>
+                            <td>输入指定的键码（修饰键, 按键1[, ..., 按键6]），可用十进制或十六进制</td>
                         </tr>
                         <tr>
                             <td><code>LED</code></td>
                             <td><code>LED 40 20 10</code></td>
-                            <td>Changes the color of the LED in decimal RGB values (0-255)</td>
+                            <td>修改 LED 颜色，RGB 十进制数值（0-255）</td>
                         </tr>
                     </tbody>
                 </table>
-                <h3>Standard Keys</h3>
+                <h3>标准按键</h3>
                 <table>
                     <thead>
                         <tr>
-                            <th>Key</th>
+                            <th>按键</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -176,16 +176,16 @@
                         </tr>
                     </tbody>
                 </table>
-                <h3>Modifier Keys</h3>
+                <h3>修饰键</h3>
                 <table>
                     <thead>
                         <tr>
-                            <th>Key</th>
+                            <th>按键</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><code>CTRL</code> or <code>CONTROL</code></td>
+                            <td><code>CTRL</code> 或 <code>CONTROL</code></td>
                         </tr>
                         <tr>
                             <td><code>SHIFT</code></td>
@@ -194,15 +194,15 @@
                             <td><code>ALT</code></td>
                         </tr>
                         <tr>
-                            <td><code>WINDOWS</code> or <code>GUI</code></td>
+                            <td><code>WINDOWS</code> 或 <code>GUI</code></td>
                         </tr>
                     </tbody>
                 </table>
-                <h3>Other Keys</h3>
+                <h3>其他按键</h3>
                 <table>
                     <thead>
                         <tr>
-                            <th>Key</th>
+                            <th>按键</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -210,7 +210,7 @@
                             <td><code>ENTER</code></td>
                         </tr>
                         <tr>
-                            <td><code>MENU</code> or <code>APP</code></td>
+                            <td><code>MENU</code> 或 <code>APP</code></td>
                         </tr>
                         <tr>
                             <td><code>DELETE</code></td>
@@ -228,16 +228,16 @@
                             <td><code>PAGEDOWN</code></td>
                         </tr>
                         <tr>
-                            <td><code>UP</code> or <code>UPARROW</code></td>
+                            <td><code>UP</code> 或 <code>UPARROW</code></td>
                         </tr>
                         <tr>
-                            <td><code>DOWN</code> or <code>DOWNARROW</code></td>
+                            <td><code>DOWN</code> 或 <code>DOWNARROW</code></td>
                         </tr>
                         <tr>
-                            <td><code>LEFT</code> or <code>LEFTARROW</code></td>
+                            <td><code>LEFT</code> 或 <code>LEFTARROW</code></td>
                         </tr>
                         <tr>
-                            <td><code>RIGHT</code> or <code>RIGHTARROW</code></td>
+                            <td><code>RIGHT</code> 或 <code>RIGHTARROW</code></td>
                         </tr>
                         <tr>
                             <td><code>TAB</code></td>
@@ -246,7 +246,7 @@
                             <td><code>END</code></td>
                         </tr>
                         <tr>
-                            <td><code>ESC</code> or <code>ESCAPE</code></td>
+                            <td><code>ESC</code> 或 <code>ESCAPE</code></td>
                         </tr>
                         <tr>
                             <td><code>SPACE</code></td>
@@ -268,11 +268,11 @@
                         </tr>
                     </tbody>
                 </table>
-                <h3>Numpad Keys</h3>
+                <h3>小键盘按键</h3>
                 <table>
                     <thead>
                         <tr>
-                            <th>Key</th>
+                            <th>按键</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -299,7 +299,7 @@
             </section>
         </main>
         <footer>
-            <a href="https://github.com/spacehuhntech/WiFiDuck" target="_blank">Source</a>
+            <a href="https://github.com/spacehuhntech/WiFiDuck" target="_blank">源码</a>
             <br><br>
             <span id="version"></span><br>
             Copyright (c) 2021 Spacehuhn Technologies<br>

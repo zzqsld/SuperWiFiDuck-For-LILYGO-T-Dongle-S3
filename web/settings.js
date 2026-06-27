@@ -44,13 +44,13 @@ window.addEventListener("load", function() {
         load_settings();
       });
     } else {
-      alert("ERROR: Invalid mode selected");
+      alert("错误：无效的模式");
     }
   };
 
   // SSID edit
   E("edit_ssid").onclick = function() {
-    var newssid = prompt("SSID (1-32 chars)", E("ssid").innerHTML);
+    var newssid = prompt("SSID（1-32 个字符）", E("ssid").innerHTML);
 
     if (newssid) {
       if (newssid.length >= 1 && newssid.length <= 32) {
@@ -58,14 +58,14 @@ window.addEventListener("load", function() {
           load_settings();
         });
       } else {
-        alert("ERROR: Invalid length");
+        alert("错误：长度无效");
       }
     }
   };
 
   // Password edit
   E("edit_password").onclick = function() {
-    var newpassword = prompt("Password (8-64 chars)", E("password").innerHTML);
+    var newpassword = prompt("密码（8-64 个字符）", E("password").innerHTML);
 
     if (newpassword) {
       if (newpassword.length >= 8 && newpassword.length <= 64) {
@@ -80,7 +80,7 @@ window.addEventListener("load", function() {
 
   // Channel edit
   E("edit_channel").onclick = function() {
-    var newchannel = prompt("Channel (1-14)", E("channel").innerHTML);
+    var newchannel = prompt("信道（1-14）", E("channel").innerHTML);
 
     if (newchannel) {
       if (parseInt(newchannel) >= 1 && parseInt(newchannel) <= 13) {
@@ -88,7 +88,7 @@ window.addEventListener("load", function() {
           load_settings();
         });
       } else {
-        alert("ERROR: Invalid channel number");
+        alert("错误：无效的信道");
       }
     }
   };
@@ -102,7 +102,7 @@ window.addEventListener("load", function() {
 
   // Reset settings
   E("reset").onclick = function() {
-    if (confirm("Reset all settings to default?")) {
+    if (confirm("将所有设置恢复为默认值？")) {
       ws_send("reset", function(msg) {
         load_settings();
       });
